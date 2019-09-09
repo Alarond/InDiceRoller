@@ -129,6 +129,10 @@ export default class App extends Component {
         let ArrayOfRolledDice = []; 
         RolledDiceString = "";
 
+        if (this.AdderValue === undefined) {
+            this.AdderValue = 0;
+        }
+
         DiceToRollList.forEach(function (element) {
             let RolledDie = utils.randomRoll(element.minvalue, element.maxvalue);
 
