@@ -28,9 +28,65 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
+    <Content Include="config\env.js" />
+    <Content Include="config\modules.js" />
+    <Content Include="config\paths.js" />
+    <Content Include="config\pnpTs.js" />
+    <Content Include="config\webpack.config.js" />
+    <Content Include="config\webpackDevServer.config.js" />
+    <Content Include="public\favicon.ico" />
+    <Content Include="public\index.html" />
+    <Content Include="public\logo192.png" />
+    <Content Include="public\logo512.png" />
+    <Content Include="public\manifest.json" />
+    <Content Include="public\robots.txt" />
+    <Content Include="scripts\build.js" />
+    <Content Include="scripts\start.js" />
+    <Content Include="scripts\test.js" />
     <Content Include="server.js" />
     <Content Include="package.json" />
     <Content Include="README.md" />
+    <Content Include="src\App.scss" />
+    <Content Include="src\App.js" />
+    <Content Include="src\App.test.js" />
+    <Content Include="src\components\DiceSelector.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="src\components\RolledDiceResult.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="src\images\d10.jpg" />
+    <Content Include="src\images\d100.jpg" />
+    <Content Include="src\images\d12.jpg" />
+    <Content Include="src\images\d2.jpg" />
+    <Content Include="src\images\d20.jpg" />
+    <Content Include="src\images\d3.jpg" />
+    <Content Include="src\images\d4.jpg" />
+    <Content Include="src\images\d6.jpg" />
+    <Content Include="src\images\d8.jpg" />
+    <Content Include="src\index.scss" />
+    <Content Include="src\index.js" />
+    <Content Include="src\logo.svg" />
+    <Content Include="src\serviceWorker.js" />
+    <Content Include="src\shared\list-available-dice.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="src\shared\list-roll-types.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="src\shared\math-utils.js" />
+    <Content Include="src\sounds\DiceRoll.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="config\" />
+    <Folder Include="config\jest\" />
+    <Folder Include="public\" />
+    <Folder Include="scripts\" />
+    <Folder Include="src\" />
+    <Folder Include="src\components\" />
+    <Folder Include="src\images\" />
+    <Folder Include="src\sounds\" />
+    <Folder Include="src\shared\" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsToolsV2.targets" />
   <ProjectExtensions>
