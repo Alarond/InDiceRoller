@@ -124,7 +124,7 @@ export default class App extends Component {
 
     RollDiceClick = () => {
 
-        this.diceRoll()
+        this.diceRoll();
 
         let ArrayOfRolledDice = []; 
         RolledDiceString = "";
@@ -194,10 +194,14 @@ export default class App extends Component {
 
     diceRoll = () => {
         console.log(soundfile);
-        this.myRef = React.createRef();
-        return (
-            <audio ref={this.myRef} src={soundfile} autoPlay />
-        )
+
+        try {
+            const audio = document.createElement('audio');
+            audio.src = soundfile;
+            audio.play();
+        } catch (error) {
+            this.props.onError(error);
+        }
     }
 
 }
