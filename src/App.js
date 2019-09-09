@@ -8,7 +8,7 @@ import RolledDiceResult from "./components/RolledDiceResult";
 import ListOfDiceTypes from "./shared/list-available-dice";
 import ListOfRollTypes from "./shared/list-roll-types";
 
-//const audio = new Audio("./sounds/DiceRoll.wav");
+import soundfile from  "./sounds/DiceRoll.wav";
 
 const DiceToRollList = [];
 const SelectedRollType = "";
@@ -17,6 +17,7 @@ const offset2 = 500;
 
 let RolledTotal = 0;
 let SecondRolledTotal = 0;
+let AdderValue = 0;
 let RolledDiceString = "";
 let HideDiceBoxes = true;
 let HideRolledResults = true;
@@ -64,7 +65,12 @@ export default class App extends Component {
                                     value={rolls.value}
                                 >{rolls.rollType}</option>
                             ))}
-                        </select>
+                      </select>
+                      <select className="form-control inputstl" onChange={this.handleAdderCharnge}>
+                          <option value={0}>Get Total As It Was Rolled</option>
+                          <option value={1}>Add 1 To The Total Rolled</option>
+                          <option value={-1}>Subtract 1 Rrom The Total Rolled</option>
+                      </select>
                       <button type="button" class="btn btn-primary btn-block" onClick={this.RollDiceClick}>Roll Them Bones!</button>
                   </div>
                   <div className="Dice-Box" hidden={HideRolledResults}>
@@ -108,9 +114,17 @@ export default class App extends Component {
         this.SelectedRollType = option;
     }
 
+    handleAdderCharnge = (e) => {
+        var index = e.target.selectedIndex;
+        var optionElement = e.target.childNodes[index]
+        var option = optionElement.getAttribute('value');
+        this.AdderValue = option;
+        console.log(this.AdderValue);
+    }
+
     RollDiceClick = () => {
 
-        //audio.play();
+        this.diceRoll()
 
         let ArrayOfRolledDice = []; 
         RolledDiceString = "";
@@ -130,18 +144,24 @@ export default class App extends Component {
 
         if (this.SelectedRollType === "Avgaverage") {
             RolledTotal = utils.average(ArrayOfRolledDice);
+            RolledTotal = RolledTotal + Number(this.AdderValue);
         } else if (this.SelectedRollType === "HighRoll") {
             RolledTotal = utils.highRoll(ArrayOfRolledDice);
+            RolledTotal = RolledTotal + Number(this.AdderValue);
         } else if (this.SelectedRollType === "LowRoll") {
             RolledTotal = utils.lowRoll(ArrayOfRolledDice);
+            RolledTotal = RolledTotal + Number(this.AdderValue);
         } else if (this.SelectedRollType === "HSNormal") {
             RolledTotal = utils.sum(ArrayOfRolledDice);
+            RolledTotal = RolledTotal + Number(this.AdderValue);
             SecondRolledTotal = utils.bodyFromStun(ArrayOfRolledDice);
         } else if (this.SelectedRollType === "HSKilling") {
             RolledTotal = utils.sum(ArrayOfRolledDice);
+            RolledTotal = RolledTotal + Number(this.AdderValue);
             SecondRolledTotal = utils.stunFromBody(RolledTotal, utils.randomRoll(1, 3));
         } else {  //default to Sum
             RolledTotal = utils.sum(ArrayOfRolledDice);
+            RolledTotal = RolledTotal + Number(this.AdderValue);
         }
 
         if (RolledTotal !== 0) {
@@ -166,6 +186,14 @@ export default class App extends Component {
         } else {
             HideDiceBoxes = false;
         }
+    }
+
+    diceRoll = () => {
+        console.log(soundfile);
+        this.myRef = React.createRef();
+        return (
+            <audio ref={this.myRef} src={soundfile} autoPlay />
+        )
     }
 
 }
