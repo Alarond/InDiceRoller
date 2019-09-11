@@ -7,7 +7,7 @@ export default class DiceSelector extends React.Component {
 
     render() {
         return <button
-            className="number-btn"
+            className="btn number-btn"
             onClick={() => this.props.onClick(this.props.dicetype)}
         >
             <img src={require(`../images/${this.props.imagename}`)} alt={this.props.imagename} />
